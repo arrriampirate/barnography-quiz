@@ -37,7 +37,7 @@
     });
 
     function handleSelect(index) {
-        if (_selected !== null && _selected === index) {
+        if (_selected !== null) {
             if (_current.id === index) {
                 addAnswer(index);
             }
@@ -127,6 +127,10 @@
 
     .step.active {
         transform: none;
+    }
+
+    .step.inactive {
+        pointer-events: none
     }
 
     .step.active .step__select {
@@ -265,7 +269,7 @@
                         on:click={() => handleSelect(item.id)}>
                         <div class="step__number">{i + 1}</div>
                         <div class="step__select">Выбрать</div>
-                        <div class="step__selected">Выбрано</div>
+                        <div class="step__selected">{_current.id === item.id ? 'Правильно' : 'Неверно'}</div>
                         <div class="step__next">Кликни еще раз, чтобы продолжить</div>
                         {#if item.image}
                             <img class="step__image" src={item.image} alt=""/>
